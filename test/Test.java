@@ -8,12 +8,16 @@ import java.util.Scanner;
 public class Test {
     public static void main(String[] args) {
         ListStudent ls = new ListStudent();
+        ListRoom lr = new ListRoom();
         boolean condition = true;
+        Room roomClass = new Room();
         while (condition) {
 
             System.out.println("1. Them sinh vien \n"
                     + "2. Xoa sinh vien \n" + "3. Update sinh vien \n"
-                    + "4. Nhap mang sinh vien, diem \n" + "5. Thoat");
+                    + "4. Them lop hoc \n" + "5. Xoa lop hoc \n"
+                    + "6. Update lop hoc \n" + "5. Them lop hoc \n" + "5. Them lop hoc \n" + "5. Them lop hoc \n"
+                    + "5. Them lop hoc \n" + "5. Them lop hoc \n" + "5. Them lop hoc \n" + "5. Them lop hoc \n");
             int num = Util.inputInteger("Xin chon: ", 1, null);
             switch (num) {
                 case 1:
@@ -37,7 +41,18 @@ public class Test {
                     Student stUpdate = ls.updateStudent(idUpdate);
                     System.out.println(stUpdate);
                     break;
+                case 4:
+                    int quantityRoom = Util.inputInteger("Xin nhap so lop hoc", 1, null);
+                    for (int i = 0; i < quantityRoom; i++) {
+                        System.out.println("input student " + i + ":");
+                        lr.inputRoom();
+                    }
+                    lr.outputRoom();
+                    break;
                 case 5:
+
+                    break;
+                case 10:
                     condition = false;
                     break;
                 default:

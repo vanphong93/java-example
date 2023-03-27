@@ -6,6 +6,7 @@ package test;
 public class Student {
 
     public static final String ID_FORMAT = "SV\\d{3}";
+
     private String id;
     private String name;
     private Float averageScore;
