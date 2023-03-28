@@ -10,6 +10,7 @@ public class Student {
     private String id;
     private String name;
     private Float averageScore;
+    private SubRegister[] subRegisters;
 
     public static String getIDFormat() {
         return Student.ID_FORMAT;
@@ -18,8 +19,14 @@ public class Student {
     public static String inputIdStudent() {
         String id = null;
         do {
-            id = Util.inputString("Enter ma sinh vien", false);
+            id = Util.inputString("Nhap ma sinh vien", false);
         } while (!Student.isValidId(id));
+        return id;
+    }
+
+    public static String inputIdSub() {
+        String id = null;
+        id = Util.inputString("Nhap ma mon hoc", false);
         return id;
     }
 
@@ -48,6 +55,44 @@ public class Student {
 
     }
 
+    public void setSubject(SubRegister[] subRegisters) {
+        this.subRegisters = subRegisters;
+    }
+
+    public void addSubRegister(SubRegister data) {
+        if (this.subRegisters == null) {
+            this.subRegisters = new SubRegister[1];
+            this.subRegisters[0] = data;
+        } else {
+            SubRegister[] newSubRegisters = new SubRegister[this.subRegisters.length + 1];
+            System.arraycopy(this.subRegisters, 0, newSubRegisters, 0, this.subRegisters.length);
+            newSubRegisters[this.subRegisters.length] = data;
+            this.subRegisters = newSubRegisters;
+        }
+
+    }
+
+    public String getSubRegisters() {
+        String str = "";
+        if (this.subRegisters != null) {
+            for (SubRegister subRegister : this.subRegisters) {
+                str += subRegister.toString();
+            }
+        }
+        return str;
+
+    }
+
+    public void scoreSubUpdate(String idSub, Float score) {
+        if (this.subRegisters != null) {
+            for (SubRegister subRegister : this.subRegisters) {
+                if (subRegister.getId().equals(idSub)) {
+                    subRegister.setScore(score);
+                }
+            }
+        }
+    }
+
     public Float getAverageScore() {
         return this.averageScore;
     }
@@ -62,17 +107,17 @@ public class Student {
         if (this.id == null) {
             this.setId(Student.inputIdStudent());
         }
-        this.setAverageScore(Util.inputFloat("enter score", 0F, 10F));
-        this.setName(Util.inputString("enter name", false));
+        this.setAverageScore(Util.inputFloat("Nhap score", 0F, 10F));
+        this.setName(Util.inputString("Nhap name", false));
 
     }
 
     public void inputUpdate() {
-        String name = Util.inputString("enter name", true);
+        String name = Util.inputString("Nhap name", true);
         if (!name.isBlank()) {
             this.setName(name);
         }
-        Float averageScore = Util.inputFloat("enter score", 0F, 10F, true);
+        Float averageScore = Util.inputFloat("Nhap score", 0F, 10F, true);
         if (averageScore != null) {
             this.setAverageScore(averageScore);
         }
@@ -98,6 +143,7 @@ public class Student {
                 " id='" + getId() + "'" +
                 ", name='" + getName() + "'" +
                 ", averageScore='" + getAverageScore() + "'" +
+                ", subRegisters=" + getSubRegisters() +
                 "}";
     }
 
