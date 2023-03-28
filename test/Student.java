@@ -19,14 +19,14 @@ public class Student {
     public static String inputIdStudent() {
         String id = null;
         do {
-            id = Util.inputString("Nhap ma sinh vien", false);
+            id = Util.inputString("Nhap ma sinh vien (svXXX)", false);
         } while (!Student.isValidId(id));
         return id;
     }
 
     public static String inputIdSub() {
         String id = null;
-        id = Util.inputString("Nhap ma mon hoc", false);
+        id = Util.inputString("Nhap ma mon hoc (mhXXX)", false);
         return id;
     }
 
@@ -107,7 +107,7 @@ public class Student {
         if (this.id == null) {
             this.setId(Student.inputIdStudent());
         }
-        this.setAverageScore(Util.inputFloat("Nhap score", 0F, 10F));
+        this.setAverageScore(Util.inputFloat("Nhap diem (0-10)", 0F, 10F));
         this.setName(Util.inputString("Nhap name", false));
 
     }
@@ -117,7 +117,7 @@ public class Student {
         if (!name.isBlank()) {
             this.setName(name);
         }
-        Float averageScore = Util.inputFloat("Nhap score", 0F, 10F, true);
+        Float averageScore = Util.inputFloat("Nhap diem (0-10)", 0F, 10F, true);
         if (averageScore != null) {
             this.setAverageScore(averageScore);
         }

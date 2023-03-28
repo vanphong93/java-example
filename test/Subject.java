@@ -13,7 +13,7 @@ public class Subject {
     public static String inputIdSub() {
         String id = null;
         do {
-            id = Util.inputString("Nhap ma mon hoc", false);
+            id = Util.inputString("Nhap ma mon hoc (mhXXX)", false);
         } while (!Subject.isValidId(id));
         return id;
     }

@@ -24,6 +24,9 @@ public class ListStudent {
             st.setId(id);
             st.input();
             this.students.add(st);
+        } else {
+            Util.decoExit();
+            System.out.println("Ma sinh vien da su dung");
         }
         return st;
 
@@ -33,6 +36,8 @@ public class ListStudent {
         Student st = getStudentById(id);
         if (st != null) {
             st.addSubRegister(item);
+        } else {
+            System.out.println("Khong tim thay sinh vien");
         }
     }
 
@@ -40,6 +45,9 @@ public class ListStudent {
         if (getStudentById(idStu) != null) {
             Student st = getStudentById(idStu);
             st.scoreSubUpdate(idSub, score);
+        } else {
+            System.out.println("Khong tim thay sinh vien");
+            Util.decoExit();
         }
 
     }
@@ -58,7 +66,7 @@ public class ListStudent {
         for (Student student : students) {
             System.out.println(student);
         }
-        System.out.println("----------------------------------------------------------------");
+        Util.decoExit();
     }
 
     public Student getStudentById(String id) {
@@ -87,9 +95,16 @@ public class ListStudent {
     public void sortByScore() {
         System.out.println("-----Ket Qua-----");
         Collections.sort(this.students, new CompareStudentByNameThenScore());
-        for (Student student : students) {
-            System.out.println(student);
+        if (students
+                .size() > 0) {
+            for (Student student : students) {
+                System.out.println(student);
+            }
+
         }
-        System.out.println("----------------------------------------------------------------");
+        else {
+            System.out.println("Hien chua co sinh vien");
+        }
+        Util.decoExit();
     }
 }

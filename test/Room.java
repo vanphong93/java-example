@@ -15,14 +15,14 @@ public class Room {
     public static String inputIdRoom() {
         String id = null;
         do {
-            id = Util.inputString("Nhap ma lop hoc", false);
+            id = Util.inputString("Nhap ma lop hoc (lpXXX)", false);
         } while (!Room.isValidId(id));
         return id;
     }
 
     public static String inputIdStu() {
         String id = null;
-        id = Util.inputString("Nhap ma sinh vien", false);
+        id = Util.inputString("Nhap ma sinh vien (svXXX)", false);
         return id;
     }
 

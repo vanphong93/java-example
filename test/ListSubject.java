@@ -22,6 +22,9 @@ public class ListSubject {
             sb.setId(id);
             sb.input();
             this.Subjects.add(sb);
+        } else {
+            Util.decoExit();
+            System.out.println("Ma mon hoc da su dung");
         }
         return sb;
 
@@ -39,6 +42,7 @@ public class ListSubject {
         for (Subject Subject : Subjects) {
             System.out.println(Subject);
         }
+Util.decoExit();
     }
 
     public Subject getSubjectById(String id) {

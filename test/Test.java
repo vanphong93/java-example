@@ -32,21 +32,31 @@ public class Test {
                     }
                     ls.outputStudent();
                     break;
-                case 2:
+                case 2:// xoa sinh vien
                     String idStudent = Util.inputString("Nhap id sinh vien", false);
                     Student stFind = ls.getStudentById(idStudent);
                     if (stFind != null) {
                         ls.deleteStuById(stFind);
+                        ls.outputStudent();
+                    } else {
+                        Util.decoExit();
+                        System.out.println("Khong tim thay sinh vien");
                     }
-                    ls.outputStudent();
+
                     break;
-                case 3:
+                case 3:// update sinh vien
                     String idUpdate = Util.inputString("Nhap id sinh vien can update", false);
                     Student stUpdate = ls.updateStudent(idUpdate);
-                    System.out.println(stUpdate);
+                    if (stUpdate != null) {
+                        System.out.println("----Sinh vien da update-----");
+                        System.out.println(stUpdate);
+                        Util.decoExit();
+                    } else {
+                        Util.decoExit();
+                        System.out.println("Khong tim thay sinh vien");
+                    }
                     break;
                 case 4: // them lop hoc
-
                     int quantityRoom = Util.inputInteger("Xin nhap so lop hoc", 1, null);
                     for (int i = 0; i < quantityRoom; i++) {
                         System.out.println("Nhap lop hoc " + (i + 1) + ":");
@@ -54,49 +64,99 @@ public class Test {
                     }
                     lr.outputRoom();
                     break;
-                case 5:
-                    // xoa lop hoc
+                case 5: // xoa lop hoc
+
+                    String roomDelete = Util.inputString("Nhap id lop hoc", false);
+                    Room rFind = lr.getRoomById(roomDelete);
+                    if (rFind != null) {
+                        lr.deleteRoomById(rFind);
+                        lr.outputRoom();
+                    } else {
+                        Util.decoExit();
+                        System.out.println("Khong tim thay lop hoc");
+                    }
                     break;
                 case 6: // update lop hoc
+                    String idUpdateRoom = Util.inputString("Nhap id lop hoc can update", false);
+                    Room rUpdate = lr.updateRoom(idUpdateRoom);
+                    if (rUpdate != null) {
+                        System.out.println("----Lop hoc da update-----");
+                        System.out.println(rUpdate);
+                        Util.decoExit();
+
+                    } else {
+                        Util.decoExit();
+                        System.out.println("Khong tim thay lop hoc");
+
+                    }
                     break;
                 case 7: // them sinh vien vao lop hoc
-                    String idRoom = Util.inputString("Nhap id lop hoc", false);
-                    String idStuAdd = Util.inputString("Nhap id sinh vien can them", false);
-                    Student stAdd = ls.getStudentById(idStuAdd);
-                    if (stAdd != null) {
+                String idStuAdd = Util.inputString("Nhap id sinh vien can them", false);
+                Student stAdd = ls.getStudentById(idStuAdd);
+                if (stAdd != null) {
+                        String idRoom = Util.inputString("Nhap id lop hoc", false);
                         lr.addStu(idRoom, stAdd);
+                        lr.outputRoom();
                     }
-                    lr.outputRoom();
+                    else {
+                        Util.decoExit();
+                        System.out.println("Khong tim thay sinh vien");
+                    }
                     break;
-                case 8:
+                case 8:// them mon hoc
                     int quaSub = Util.inputInteger("Xin nhap so mon hoc", 1, null);
                     for (int i = 0; i < quaSub; i++) {
                         System.out.println("Nhap mon hoc " + (i + 1) + ":");
                         lsub.inputSubject();
                     }
+                    System.out.println("----Mon Hoc ------");
                     lsub.outputSubject();
                     break;
                 case 9:// xoa mon hoc
+                    String subDelete = Util.inputString("Nhap id mon hoc", false);
+                    Subject subFind = lsub.getSubjectById(subDelete);
+                    if (subFind != null) {
+                        lsub.delSubById(subFind);
+                        System.out.println("----Mon Hoc Con Lai------");
+                        lsub.outputSubject();
+                    } else {
+                        Util.decoExit();
+                        System.out.println("Khong tim thay mon hoc");
+                    }
                     break;
                 case 10:// update mon hoc
+                    String idUpdateSub = Util.inputString("Nhap id mon hoc can update", false);
+                    Subject subUpdate = lsub.updateSubject(idUpdateSub);
+                    if (subUpdate != null) {
+                        System.out.println("----Mon hoc da update-----");
+                        System.out.println(subUpdate);
+                        Util.decoExit();
+
+                    } else {
+                        Util.decoExit();
+                        System.out.println("Khong tim thay mon hoc");
+                    }
                     break;
-                case 11:
-                    String idStu = Util.inputString("Nhap id sinh vien can them mon hoc", false);
-                    String idSub = Util.inputString("Nhap id mon hoc can them", false);
-                    int semester = Util.inputInteger("Nhap hoc ki", 1, 10);
-                    Float score = Util.inputFloat("Nhap so diem", 0F, 10F);
+                case 11: // sinh vien dang ki mon hoc
+                    String idSub = Util.inputString("Nhap id mon hoc can them (mhXXX)", false);
                     Subject sub = lsub.getSubjectById(idSub);
                     if (sub != null) {
+                        String idStu = Util.inputString("Nhap id sinh vien can them mon hoc (svXXX)", false);
+                        int semester = Util.inputInteger("Nhap hoc ki (1-10)", 1, 10);
+                        Float score = Util.inputFloat("Nhap so diem (0-10)", 0F, 10F);
                         SubRegister data = new SubRegister(
                                 sub.getId(), sub.getName(), semester, score);
                         ls.addSubRegister(idStu, data);
+                        ls.outputStudent();
+                    } else {
+                        Util.decoExit();
+                        System.out.println("Khong tim thay mon hoc");
                     }
-                    ls.outputStudent();
                     break;
-                case 12:
-                    String idStuUpdate = Util.inputString("Nhap id sinh vien", true);
-                    String idSubUpdate = Util.inputString("Nhap id mon hoc update", true);
-                    Float scoreUpdate = Util.inputFloat("Nhap so score update", 0F, 10F);
+                case 12: // cap nhat diem mon hoc cho sinh vien
+                    String idStuUpdate = Util.inputString("Nhap id sinh vien (svXXX)", true);
+                    String idSubUpdate = Util.inputString("Nhap id mon hoc update (mhXXX)", true);
+                    Float scoreUpdate = Util.inputFloat("Nhap so diem update (0-10)", 0F, 10F);
                     ls.scoreSubUpdate(idStuUpdate, idSubUpdate, scoreUpdate);
                     ls.outputStudent();
                     break;

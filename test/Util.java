@@ -5,6 +5,7 @@ import java.util.Scanner;
 public final class Util {
 
     private static final String IGNORE_CASE_PATTERN = "(?i)";
+
     private Util() {
     }
 
@@ -16,6 +17,10 @@ public final class Util {
             str = sc.nextLine();
         } while (!allowEmpty && str.isBlank());
         return str.trim();
+    }
+
+    public static void decoExit() {
+        System.out.println("----------------------------------------------------------------");
     }
 
     public static Integer inputInteger(String message, Integer minValue, Integer maxValue) {
@@ -35,12 +40,12 @@ public final class Util {
     /**
      * Input integer number.
      *
-     * @param message string message.
-     * @param minValue the minimum value.
-     * @param maxValue the maximum value.
+     * @param message    string message.
+     * @param minValue   the minimum value.
+     * @param maxValue   the maximum value.
      * @param allowEmpty flag to allow the user to enter an empty string.
      * @return null if the user inputs an empty string. Otherwise, return the
-     * integer inputted.
+     *         integer inputted.
      */
     public static Integer inputInteger(String message, Integer minValue, Integer maxValue, boolean allowEmpty) {
         Integer inputVal = null;
@@ -55,12 +60,12 @@ public final class Util {
                 }
             } catch (NumberFormatException ex) {
                 inputVal = null;
-//                Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+                // Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
             }
         } while (!(allowEmpty && sVal.isBlank())
                 && (inputVal == null
-                || minValue != null && minValue.compareTo(inputVal) > 0
-                || maxValue != null && maxValue.compareTo(inputVal) < 0));
+                        || minValue != null && minValue.compareTo(inputVal) > 0
+                        || maxValue != null && maxValue.compareTo(inputVal) < 0));
         return inputVal;
     }
 
@@ -94,8 +99,8 @@ public final class Util {
             }
         } while (!(allowEmpty && sVal.isBlank())
                 && (inputVal == null
-                || minValue != null && minValue.compareTo(inputVal) > 0
-                || maxValue != null && maxValue.compareTo(inputVal) < 0));
+                        || minValue != null && minValue.compareTo(inputVal) > 0
+                        || maxValue != null && maxValue.compareTo(inputVal) < 0));
         return inputVal;
     }
 
@@ -108,37 +113,37 @@ public final class Util {
         }
         return false;
     }
-    //delete the item from array
+    // delete the item from array
     // public static student[] removeItem(student[] arr, int index)
     // {
- 
-    //     // If the array is empty
-    //     // or the index is not in array range
-    //     // return the original array
-    //     if (arr == null || index < 0
-    //         || index >= arr.length) {
- 
-    //         return arr;
-    //     }
- 
-    //     // Create another array of size one less
-    //     student[] anotherArray = new student[arr.length - 1];
- 
-    //     // Copy the elements except the index
-    //     // from original array to the other array
-    //     for (int i = 0, k = 0; i < arr.length; i++) {
- 
-    //         // if the index is
-    //         // the removal element index
-    //         if (i == index) {
-    //             continue;
-    //         }
- 
-    //         // if the index is not
-    //         // the removal element index
-    //         anotherArray[k++] = arr[i];
-    //     }
- 
-    //     // return the resultant array
-    //     return anotherArray;}
+
+    // // If the array is empty
+    // // or the index is not in array range
+    // // return the original array
+    // if (arr == null || index < 0
+    // || index >= arr.length) {
+
+    // return arr;
+    // }
+
+    // // Create another array of size one less
+    // student[] anotherArray = new student[arr.length - 1];
+
+    // // Copy the elements except the index
+    // // from original array to the other array
+    // for (int i = 0, k = 0; i < arr.length; i++) {
+
+    // // if the index is
+    // // the removal element index
+    // if (i == index) {
+    // continue;
+    // }
+
+    // // if the index is not
+    // // the removal element index
+    // anotherArray[k++] = arr[i];
+    // }
+
+    // // return the resultant array
+    // return anotherArray;}
 }

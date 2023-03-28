@@ -22,6 +22,9 @@ public class ListRoom {
             room.setId(idRoom);
             room.input();
             this.rooms.add(room);
+        } else {
+            Util.decoExit();
+            System.out.println("Ma lop da su dung");
         }
         return room;
     }
@@ -42,9 +45,11 @@ public class ListRoom {
     }
 
     public void outputRoom() {
+        System.out.println("-----Ket Qua------");
         for (Room item : rooms) {
             System.out.println(item);
         }
+Util.decoExit();
     }
 
     public Room getRoomById(String id) {
@@ -62,10 +67,15 @@ public class ListRoom {
     }
 
     public void averageScoreRoomLess() {
+      if (rooms.size() > 0) {
         for (Room item : rooms) {
             if (item.scoreCount()) {
                 System.out.println(item);
             }
         }
+      } else {
+        Util.decoExit();
+        System.out.println("Hien khong co lop hoc");
+      }
     }
 }
