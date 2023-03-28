@@ -42,8 +42,8 @@ public class ListRoom {
     }
 
     public void outputRoom() {
-        for (Room Room : rooms) {
-            System.out.println(Room);
+        for (Room item : rooms) {
+            System.out.println(item);
         }
     }
 
@@ -60,9 +60,12 @@ public class ListRoom {
         this.rooms.remove(item);
 
     }
-    public void averageScoreRoom() {
-        for (Room Room : rooms) {
-            Room.averageScore();
+
+    public void averageScoreRoomLess() {
+        for (Room item : rooms) {
+            if (item.scoreCount()) {
+                System.out.println(item);
+            }
         }
     }
 }

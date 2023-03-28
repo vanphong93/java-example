@@ -13,13 +13,12 @@ public class Test {
         ListSubject lsub = new ListSubject();
         boolean condition = true;
         while (condition) {
-
-            System.out.println("1. Them sinh vien \n"
-                    + "2. Xoa sinh vien \n" + "3. Update sinh vien \n"
-                    + "4. Them lop hoc \n" + "5. Xoa lop hoc \n"
-                    + "6. Update lop hoc \n" + "7. Them sinh vien vao lop hoc \n" + "8. Them mon hoc \n"
-                    + "9. Xoa mon hoc \n"
-                    + "10. Update mon hoc \n" + "11. Hoc sinh dang ki mon hoc \n" + "12. Cap nhat diem mon hoc \n"
+            System.out.println("1. Them sinh vien "
+                    + "2. Xoa sinh vien " + "3. Update sinh vien \n"
+                    + "4. Them lop hoc " + "5. Xoa lop hoc "
+                    + "6. Update lop hoc " + "7. Them sinh vien vao lop hoc \n" + "8. Them mon hoc "
+                    + "9. Xoa mon hoc "
+                    + "10. Update mon hoc " + "11. Hoc sinh dang ki mon hoc " + "12. Cap nhat diem mon hoc \n"
                     + "13. Sap xep tang dan theo diem trung binh \n"
                     + "14. Lop co ty le rot >10 % \n"
                     + "15. Exit \n");
@@ -105,11 +104,13 @@ public class Test {
                     ls.sortByScore();
                     break;
                 case 14:// rooms have averageScore <5
-
+                    lr.averageScoreRoomLess();
+                    break;
                 case 15:
                     condition = false;
                     break;
                 default:
+                    condition = false;
                     break;
             }
         }

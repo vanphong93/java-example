@@ -43,15 +43,17 @@ public class Room {
     public String getName() {
         return this.name;
     }
-public String getStudents(){
-    String str = "";
-    if (this.students!= null) {
-        for (int i = 0; i < this.students.length; i++) {
-            str = str + this.students[i].toString() + "\n";
+
+    public String getStudents() {
+        String str = "";
+        if (this.students != null) {
+            for (int i = 0; i < this.students.length; i++) {
+                str = str + this.students[i].toString() + "\n";
+            }
         }
+        return str;
     }
-    return str;
-}
+
     public void setName(String name) {
         if (name != null && !name.isBlank()) {
             this.name = name;
@@ -91,6 +93,22 @@ public String getStudents(){
         if (!name.isBlank()) {
             this.setName(name);
         }
+    }
+
+    public boolean scoreCount() {
+        int count = 0;
+        if (this.students != null) {
+            for (int i = 0; i < this.students.length; i++) {
+                if (students[i].getAverageScore() < 5) {
+                    count++;
+                }
+            }
+            if (count / this.students.length > 0.1F) {
+                return true;
+            }
+        }
+        return false;
+
     }
 
     public Room(String id, String name) {
