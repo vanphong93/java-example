@@ -1,6 +1,8 @@
 package test;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ListStudent {
@@ -27,6 +29,21 @@ public class ListStudent {
 
     }
 
+    public void addSubRegister(String id, SubRegister item) {
+        Student st = getStudentById(id);
+        if (st != null) {
+            st.addSubRegister(item);
+        }
+    }
+
+    public void scoreSubUpdate(String idStu, String idSub, Float score) {
+        if (getStudentById(idStu) != null) {
+            Student st = getStudentById(idStu);
+            st.scoreSubUpdate(idSub, score);
+        }
+
+    }
+
     public Student updateStudent(String id) {
         // String id = Student.inputIdStudent();
         Student st = getStudentById(id);
@@ -37,9 +54,11 @@ public class ListStudent {
     }
 
     public void outputStudent() {
+        System.out.println("-----Ket Qua-----");
         for (Student student : students) {
             System.out.println(student);
         }
+        System.out.println("----------------------------------------------------------------");
     }
 
     public Student getStudentById(String id) {
@@ -53,5 +72,24 @@ public class ListStudent {
 
     public void deleteStuById(Student item) {
         students.remove(item);
+    }
+
+    private class CompareStudentByNameThenScore implements Comparator<Student> {
+
+        @Override
+        public int compare(Student o1, Student o2) {
+            int cmp = o1.getAverageScore().compareTo(o2.getAverageScore());
+            return cmp;
+        }
+
+    }
+
+    public void sortByScore() {
+        System.out.println("-----Ket Qua-----");
+        Collections.sort(this.students, new CompareStudentByNameThenScore());
+        for (Student student : students) {
+            System.out.println(student);
+        }
+        System.out.println("----------------------------------------------------------------");
     }
 }

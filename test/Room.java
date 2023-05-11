@@ -1,10 +1,12 @@
 package test;
 
-public class Room  {
+import java.util.List;
+
+public class Room {
     public static final String ID_FORMAT = "lp\\d{3}";
     private String id;
     private String name;
-
+    private Student[] students;
 
     public static String getIDFormat() {
         return Room.ID_FORMAT;
@@ -13,8 +15,14 @@ public class Room  {
     public static String inputIdRoom() {
         String id = null;
         do {
-            id = Util.inputString("Enter ma lop hoc", false);
+            id = Util.inputString("Nhap ma lop hoc", false);
         } while (!Room.isValidId(id));
+        return id;
+    }
+
+    public static String inputIdStu() {
+        String id = null;
+        id = Util.inputString("Nhap ma sinh vien", false);
         return id;
     }
 
@@ -36,6 +44,16 @@ public class Room  {
         return this.name;
     }
 
+    public String getStudents() {
+        String str = "";
+        if (this.students != null) {
+            for (int i = 0; i < this.students.length; i++) {
+                str = str + this.students[i].toString() + "\n";
+            }
+        }
+        return str;
+    }
+
     public void setName(String name) {
         if (name != null && !name.isBlank()) {
             this.name = name;
@@ -43,17 +61,35 @@ public class Room  {
 
     }
 
+    public void setStudents(Student[] students) {
+        this.students = students;
+    }
+
+    public void addStu(Student data) {
+        if (this.students == null) {
+            this.students = new Student[1];
+            this.students[0] = data;
+        } else {
+            Student[] newStudents = new Student[this.students.length + 1];
+            for (int i = 0; i < this.students.length; i++) {
+                newStudents[i] = this.students[i];
+            }
+            newStudents[this.students.length] = data;
+            this.students = newStudents;
+        }
+    }
+
     public void input() {
         if (this.id == null) {
             this.setId(Room.inputIdRoom());
         }
 
-        this.setName(Util.inputString("enter name", false));
+        this.setName(Util.inputString("Nhap name", false));
 
     }
 
     public void inputUpdate() {
-        String name = Util.inputString("enter name", true);
+        String name = Util.inputString("Nhap name", true);
         if (!name.isBlank()) {
             this.setName(name);
         }
@@ -63,6 +99,17 @@ public class Room  {
         this.setId(id);
         this.setName(name);
     }
+
+    public Float averageScoreRoom() {
+        Float sum = 0F;
+        for (int i = 0; i < this.students.length; i++) {
+            sum = sum + this.students[i].getAverageScore();
+        }
+        Float average = sum / this.students.length;
+        return average;
+
+    }
+
     public Room() {
     }
 
@@ -70,15 +117,13 @@ public class Room  {
         System.out.println(this);
     }
 
-
     @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            "}";
+                " id='" + getId() + "'" +
+                ", name='" + getName() + "'" +
+                ", students=" + getStudents() +
+                "}";
     }
-
-
 
 }

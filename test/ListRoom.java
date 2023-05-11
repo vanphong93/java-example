@@ -1,34 +1,44 @@
 package test;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListRoom {
     private List<Room> rooms;
+
     public ListRoom() {
         this.rooms = new ArrayList();
     }
+
     public List<Room> getRooms() {
         return rooms;
     }
-    public Room inputRoom() {
-        String id = Room.inputIdRoom();
-        Room st = getRoomById(id);
-        if (st == null) {
-            st = new Room();
-            st.setId(id);
-            st.input();
-            this.rooms.add(st);
-        }
-        return st;
 
+    public Room inputRoom() {
+        String idRoom = Room.inputIdRoom();
+        Room room = getRoomById(idRoom);
+        if (room == null) {
+            room = new Room();
+            room.setId(idRoom);
+            room.input();
+            this.rooms.add(room);
+        }
+        return room;
+    }
+
+    public void addStu(String idRoom, Student data) {
+        Room room = getRoomById(idRoom);
+        if (room != null) {
+            room.addStu(data);
+        }
     }
 
     public Room updateRoom(String id) {
-        Room st = getRoomById(id);
-        if (st != null) {
-            st.inputUpdate();
+        Room room = getRoomById(id);
+        if (room != null) {
+            room.inputUpdate();
         }
-        return st;
+        return room;
     }
 
     public void outputRoom() {
@@ -48,5 +58,11 @@ public class ListRoom {
 
     public void deleteRoomById(Room item) {
         this.rooms.remove(item);
-    
-}}
+
+    }
+    public void averageScoreRoom() {
+        for (Room Room : rooms) {
+            Room.averageScore();
+        }
+    }
+}
